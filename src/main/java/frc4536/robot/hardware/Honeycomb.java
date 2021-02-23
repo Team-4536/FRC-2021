@@ -41,6 +41,10 @@ public class Honeycomb implements RobotFrame {
     SpeedController m_beltMotor = new WPI_VictorSPX(4);
     SpeedController m_climberArmMotor = new WPI_VictorSPX(2);
     SpeedController m_liftMotor = new WPI_VictorSPX(3);
+    SpeedController m_intakePullyMotorRight = new WPI_VictorSPX(5);
+    SpeedController m_intakePullyMotorLeft = new WPI_VictorSPX(6);
+    SpeedController m_intakeArmMotorRight = new WPI_VictorSPX(7);
+    SpeedController m_intakeArmMotorLeft = new WPI_VictorSPX(8);
 
     AHRS m_navx = new AHRS();
 
@@ -48,6 +52,10 @@ public class Honeycomb implements RobotFrame {
     IEncoderMotor m_leftMotors = new Neo(10.75, 49, 50);
     DigitalInput m_bottomLimitSwitch = new DigitalInput(0);
     DigitalInput m_conveyorBeam = new DigitalInput(1);
+    DigitalInput m_intakeLimitSwitchTopLeft = new DigitalInput(2);
+    DigitalInput m_intakeLimitSwitchBottomLeft = new DigitalInput(3);
+    DigitalInput m_intakeLimitSwitchTopRight = new DigitalInput(4);
+    DigitalInput m_intakeLimitSwitchBottomRight = new DigitalInput(5);
 
     DoubleSolenoid m_conveyorBlocker = new DoubleSolenoid(1,0);
     DoubleSolenoid m_intakeExtender = new DoubleSolenoid(2,3);
@@ -111,12 +119,53 @@ public class Honeycomb implements RobotFrame {
     public IEncoderMotor getBottomShooterFlywheelMotor() {
         return m_bottomFlywheel;
     }
+
     @Override
     public DigitalInput getBottomLimitSwitch(){
-        return m_bottomLimitSwitch;}
+        return m_bottomLimitSwitch;
+    }
 
     @Override
     public DigitalInput getConveyorBeam() {
         return m_conveyorBeam;
+    }  
+
+    @Override
+    public SpeedController getIntakePullyMotorRight() {
+        return m_intakePullyMotorRight;
     }
+
+    @Override
+    public SpeedController getIntakePullyMotorLeft() {
+        return m_intakePullyMotorLeft;
+    }
+
+    @Override SpeedController getIntakeArmMotorRight() {
+        return m_intakeArmMotorRight;
+    }
+
+    @Override
+    public SpeedController getIntakeArmMotorLeft() {
+        return m_intakeArmMotorLeft;
+    }
+
+    @Override
+    public DigitalInput getIntakeLimitSwitchTopLeft() {
+        return m_intakeLimitSwitchTopLeft;
+    }  
+
+    @Override
+    public DigitalInput getIntakeLimitSwitchTopRight() {
+        return m_intakeLimitSwitchTopRight;
+    }  
+
+    @Override
+    public DigitalInput getIntakeLimitSwitchBottomLeft() {
+        return m_intakeLimitSwitchBottomLeft;
+    }  
+   
+    @Override
+    public DigitalInput getIntakeLimitSwitchBottomRight() {
+        return m_intakeLimitSwitchBottomRight;
+    }  
 }
