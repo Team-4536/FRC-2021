@@ -53,6 +53,11 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
     SpeedController m_beltMotor = new Talon(6);
     SpeedController m_climberArmMotor = new Talon(7);
     SpeedController m_liftMotor = new Talon(8);
+    SpeedController m_intakePullyMotorRight = new Talon(9);
+    SpeedController m_intakePullyMotorLeft = new Talon(10);
+    SpeedController m_intakeArmMotorRight = new Talon(11);
+    SpeedController m_intakeArmMotorLeft = new Talon(12);
+
     DoubleSolenoid m_conveyorBlocker = new DoubleSolenoid(0,1);
     DoubleSolenoid m_intakeExtender = new DoubleSolenoid(2,3);
 
@@ -60,6 +65,8 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
     IEncoderMotor m_bottomFlywheel = new VirtualEncoderMotor(new Talon(4),100);
     DigitalInput m_bottomLimitSwitch = new DigitalInput(0);
     DigitalInput m_beamBreak = new DigitalInput(1);
+    DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(2);
+    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(4);
 
 
     AHRS m_navx = new AHRS(){
@@ -157,5 +164,35 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
     @Override
     public DigitalInput getConveyorBeam() {
         return m_beamBreak;
+    }
+
+    @Override
+    public SpeedController getIntakePullyMotorRight() {
+        return m_intakePullyMotorRight;
+    }
+
+    @Override
+    public SpeedController getIntakePullyMotorLeft() {
+        return m_intakePullyMotorLeft;
+    }
+
+    @Override
+    public SpeedController getIntakeArmMotorLeft() {
+        return m_intakeArmMotorLeft;
+    }
+
+    @Override
+    public DigitalInput getIntakeLimitSwitchLeft() {
+        return m_intakeLimitSwitchLeft;
+    }  
+   
+    @Override
+    public DigitalInput getIntakeLimitSwitchRight() {
+        return m_intakeLimitSwitchRight;
+    }  
+
+    @Override 
+    public SpeedController getIntakeArmMotorRight() {
+        return m_intakeArmMotorRight;
     }
 }

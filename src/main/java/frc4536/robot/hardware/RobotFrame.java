@@ -22,5 +22,12 @@ public interface RobotFrame {
     DoubleSolenoid getIntakeExtender();
     DigitalInput getBottomLimitSwitch();
     DigitalInput getConveyorBeam();
+    DigitalInput getIntakeLimitSwitchLeft();
+    DigitalInput getIntakeLimitSwitchRight();
+    SpeedController getIntakePullyMotorRight();
+    SpeedController getIntakePullyMotorLeft();
+    SpeedController getIntakeArmMotorLeft();
+    SpeedController getIntakeArmMotorRight();
+   
 }
 

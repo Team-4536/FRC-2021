@@ -52,10 +52,8 @@ public class Honeycomb implements RobotFrame {
     IEncoderMotor m_leftMotors = new Neo(10.75, 49, 50);
     DigitalInput m_bottomLimitSwitch = new DigitalInput(0);
     DigitalInput m_conveyorBeam = new DigitalInput(1);
-    DigitalInput m_intakeLimitSwitchTopLeft = new DigitalInput(2);
-    DigitalInput m_intakeLimitSwitchBottomLeft = new DigitalInput(3);
-    DigitalInput m_intakeLimitSwitchTopRight = new DigitalInput(4);
-    DigitalInput m_intakeLimitSwitchBottomRight = new DigitalInput(5);
+    DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(2);
+    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(4);
 
     DoubleSolenoid m_conveyorBlocker = new DoubleSolenoid(1,0);
     DoubleSolenoid m_intakeExtender = new DoubleSolenoid(2,3);
@@ -140,32 +138,24 @@ public class Honeycomb implements RobotFrame {
         return m_intakePullyMotorLeft;
     }
 
-    @Override SpeedController getIntakeArmMotorRight() {
-        return m_intakeArmMotorRight;
-    }
-
     @Override
     public SpeedController getIntakeArmMotorLeft() {
         return m_intakeArmMotorLeft;
     }
 
     @Override
-    public DigitalInput getIntakeLimitSwitchTopLeft() {
-        return m_intakeLimitSwitchTopLeft;
-    }  
-
-    @Override
-    public DigitalInput getIntakeLimitSwitchTopRight() {
-        return m_intakeLimitSwitchTopRight;
-    }  
-
-    @Override
-    public DigitalInput getIntakeLimitSwitchBottomLeft() {
-        return m_intakeLimitSwitchBottomLeft;
+    public DigitalInput getIntakeLimitSwitchLeft() {
+        return m_intakeLimitSwitchLeft;
     }  
    
     @Override
-    public DigitalInput getIntakeLimitSwitchBottomRight() {
-        return m_intakeLimitSwitchBottomRight;
+    public DigitalInput getIntakeLimitSwitchRight() {
+        return m_intakeLimitSwitchRight;
     }  
+
+    @Override 
+    public SpeedController getIntakeArmMotorRight() {
+        return m_intakeArmMotorRight;
+    }
+
 }
