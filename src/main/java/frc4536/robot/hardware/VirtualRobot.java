@@ -63,7 +63,7 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
     IEncoderMotor m_bottomFlywheel = new VirtualEncoderMotor(new Talon(4),100);
     DigitalInput m_beamBreak = new DigitalInput(1);
     DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(2);
-    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(4);
+    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(3);
 
 
     AHRS m_navx = new AHRS(){
