@@ -31,8 +31,6 @@ public class TestRobot implements RobotFrame {
    
     VirtualMotor m_intakeMotor = new VirtualMotor("Intake Motor");
     VirtualMotor m_beltMotor = new VirtualMotor("Belt Motor");
-    VirtualMotor m_climberArmMotor = new VirtualMotor("Climber Motor");
-    VirtualMotor m_liftMotor = new VirtualMotor("Lift Motor");
     VirtualMotor m_intakePullyMotorRight = new VirtualMotor("Intake Pully Motor Right ");
     VirtualMotor m_intakePullyMotorLeft = new VirtualMotor("Intake Pully Motor Left ");
     VirtualMotor m_intakeArmMotorRight = new VirtualMotor("Intake Arm Motor Right ");
@@ -52,7 +50,6 @@ public class TestRobot implements RobotFrame {
     IEncoderMotor m_bottomFlywheel = new VirtualEncoderMotor("Bottom Flywheel",8.0*0.478779);
     IEncoderMotor m_leftMotors = new PWMEncoderMotor(new SpeedControllerGroup(new Spark(0), new Spark(1)), m_leftEncoder, 2048);
     IEncoderMotor m_rightMotors = new PWMEncoderMotor(new SpeedControllerGroup(new Spark(2), new Spark(3)), m_rightEncoder, 2048);
-    DigitalInput m_bottomLimitSwitch = new DigitalInput(13);
     DigitalInput m_beamBreak = new DigitalInput(12);
     DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(14);
     DigitalInput m_intakeLimitSwitchRight = new DigitalInput(15);
@@ -70,16 +67,6 @@ public class TestRobot implements RobotFrame {
     @Override
     public IEncoderMotor getDrivetrainLeftMotor() {
         return m_leftMotors;
-    }
-
-    @Override
-    public SpeedController getClimberArmMotor() {
-        return m_climberArmMotor;
-    }
-
-    @Override
-    public SpeedController getLiftMotor() {
-        return m_liftMotor;
     }
 
     @Override
@@ -114,11 +101,6 @@ public class TestRobot implements RobotFrame {
     @Override
     public IEncoderMotor getBottomShooterFlywheelMotor() {
         return m_bottomFlywheel;
-    }
-
-    @Override
-    public DigitalInput getBottomLimitSwitch(){
-        return m_bottomLimitSwitch;
     }
 
     @Override
