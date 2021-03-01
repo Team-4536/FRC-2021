@@ -41,7 +41,6 @@ public class RobotContainer {
     public final Shooter m_shooter = new Shooter(m_robotHardware.getTopShooterFlywheelMotor(), m_robotHardware.getBottomShooterFlywheelMotor());
     public final Conveyor m_conveyor = new Conveyor(m_robotHardware.getBeltMotor(), m_robotHardware.getConveyorBlocker(), m_robotHardware.getConveyorBeam());
     public final Intake m_intake = new Intake(m_robotHardware.getIntakeMotor(), m_robotHardware.getIntakeExtender());
-    public final Climber m_climber = new Climber(m_robotHardware.getClimberArmMotor(), m_robotHardware.getLiftMotor(), m_robotHardware.getBottomLimitSwitch());
 
     private final XboxController m_driveController = new XboxController(0);
     private final Joystick m_operatorJoystick = new Joystick(1);
@@ -152,10 +151,6 @@ public class RobotContainer {
                     (button ? 0.4 : (trigger ? 0.6 : 0.9)) * deadzone(m_driveController.getX(GenericHID.Hand.kRight), Constants.DRIVE_DEADZONE),
                     true);
         }, m_driveTrain);
-        CommandBase default_climber = new RunCommand(() -> {  //climber
-            m_climber.setWinch(m_operatorJoystick.getRawButton(3) ? -1 :(m_operatorJoystick.getRawButton(4) ? -m_operatorJoystick.getY() : 0));
-            m_climber.setArm(m_operatorJoystick.getRawButton(5) ? -m_operatorJoystick.getY() : 0);
-        }, m_climber);
         CommandBase default_conveyor = new RunCommand(() -> { //conveyor
             m_conveyor.raiseTop();
             m_conveyor.moveConveyor(0, true);
@@ -173,14 +168,12 @@ public class RobotContainer {
             }
         }, m_shooter);
 
-        default_climber.setName("Default Climber");
         default_conveyor.setName("Default Conveyor");
         default_shooter.setName("Default Shooter");
         default_intake.setName("Default Intake");
         default_driveTrain.setName("Default Drivetrain");
 
         m_driveTrain.setDefaultCommand(default_driveTrain);
-        m_climber.setDefaultCommand(default_climber);
         m_conveyor.setDefaultCommand(default_conveyor);
         m_intake.setDefaultCommand(default_intake);
         m_shooter.setDefaultCommand(default_shooter);

@@ -39,8 +39,6 @@ public class Honeycomb implements RobotFrame {
 
     SpeedController m_intakeMotor = new WPI_VictorSPX(1);
     SpeedController m_beltMotor = new WPI_VictorSPX(4);
-    SpeedController m_climberArmMotor = new WPI_VictorSPX(2);
-    SpeedController m_liftMotor = new WPI_VictorSPX(3);
     SpeedController m_intakePullyMotorRight = new WPI_VictorSPX(5);
     SpeedController m_intakePullyMotorLeft = new WPI_VictorSPX(6);
     SpeedController m_intakeArmMotorRight = new WPI_VictorSPX(7);
@@ -50,7 +48,6 @@ public class Honeycomb implements RobotFrame {
 
     IEncoderMotor m_rightMotors = new Neo(10.75, 47, 48);
     IEncoderMotor m_leftMotors = new Neo(10.75, 49, 50);
-    DigitalInput m_bottomLimitSwitch = new DigitalInput(0);
     DigitalInput m_conveyorBeam = new DigitalInput(1);
     DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(2);
     DigitalInput m_intakeLimitSwitchRight = new DigitalInput(4);
@@ -71,16 +68,6 @@ public class Honeycomb implements RobotFrame {
     @Override
     public IEncoderMotor getDrivetrainLeftMotor() {
         return m_leftMotors;
-    }
-
-    @Override
-    public SpeedController getClimberArmMotor() {
-        return m_climberArmMotor;
-    }
-
-    @Override
-    public SpeedController getLiftMotor() {
-        return m_liftMotor;
     }
 
     @Override
@@ -116,11 +103,6 @@ public class Honeycomb implements RobotFrame {
     @Override
     public IEncoderMotor getBottomShooterFlywheelMotor() {
         return m_bottomFlywheel;
-    }
-
-    @Override
-    public DigitalInput getBottomLimitSwitch(){
-        return m_bottomLimitSwitch;
     }
 
     @Override

@@ -16,11 +16,8 @@ public interface RobotFrame {
     SpeedController getBeltMotor();
     AHRS getDrivetrainNavX();
     RobotConstants getConstants();
-    SpeedController getClimberArmMotor();
-    SpeedController getLiftMotor();
     DoubleSolenoid getConveyorBlocker();
     DoubleSolenoid getIntakeExtender();
-    DigitalInput getBottomLimitSwitch();
     DigitalInput getConveyorBeam();
     DigitalInput getIntakeLimitSwitchLeft();
     DigitalInput getIntakeLimitSwitchRight();
