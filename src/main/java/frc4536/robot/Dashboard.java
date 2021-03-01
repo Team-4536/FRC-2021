@@ -61,8 +61,6 @@ public class Dashboard {
                 .withPosition(0, 2);
         debug_display.add(robotContainer.m_intake)
                 .withPosition(0, 3);
-        debug_display.add(robotContainer.m_climber)
-                .withPosition(0, 4);
         debug_display.add(CommandScheduler.getInstance())
                 .withPosition(2, 0)
                 .withSize(3, 5);
