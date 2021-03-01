@@ -51,8 +51,8 @@ public class TestRobot implements RobotFrame {
     IEncoderMotor m_leftMotors = new PWMEncoderMotor(new SpeedControllerGroup(new Spark(0), new Spark(1)), m_leftEncoder, 2048);
     IEncoderMotor m_rightMotors = new PWMEncoderMotor(new SpeedControllerGroup(new Spark(2), new Spark(3)), m_rightEncoder, 2048);
     DigitalInput m_beamBreak = new DigitalInput(12);
-    DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(14);
-    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(15);
+    DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(2);
+    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(3);
    
     @Override
     public RobotConstants getConstants() {
