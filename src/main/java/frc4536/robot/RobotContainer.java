@@ -146,7 +146,6 @@ public class RobotContainer {
         //Default behaviour for all subsystems lives here.
         CommandBase default_driveTrain = new RunCommand(() -> {
             m_driveTrain.arcadeDrive(m_operatorJoystick.getY(),m_operatorJoystick.getX());
-
         }, m_driveTrain);
         CommandBase default_climber = new RunCommand(() -> {  //climber
             m_climber.setWinch(m_operatorJoystick.getRawButton(3) ? -1 :(m_operatorJoystick.getRawButton(4) ? -m_operatorJoystick.getY() : 0));
