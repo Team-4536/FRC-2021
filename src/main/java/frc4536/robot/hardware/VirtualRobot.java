@@ -51,10 +51,8 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
    
     SpeedController m_intakeMotor = new Talon(5);
     SpeedController m_beltMotor = new Talon(6);
-    SpeedController m_intakePullyMotorRight = new Talon(9);
-    SpeedController m_intakePullyMotorLeft = new Talon(10);
-    SpeedController m_intakeArmMotorRight = new Talon(11);
-    SpeedController m_intakeArmMotorLeft = new Talon(12);
+    SpeedController m_intakePullyMotor = new Talon(10);
+    SpeedController m_intakeArmMotor = new Talon(12);
 
     DoubleSolenoid m_conveyorBlocker = new DoubleSolenoid(0,1);
     DoubleSolenoid m_intakeExtender = new DoubleSolenoid(2,3);
@@ -62,8 +60,8 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
     IEncoderMotor m_topFlywheel = new VirtualEncoderMotor(new Talon(3),90);
     IEncoderMotor m_bottomFlywheel = new VirtualEncoderMotor(new Talon(4),100);
     DigitalInput m_beamBreak = new DigitalInput(1);
-    DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(2);
-    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(3);
+    DigitalInput m_intakeLimitSwitchTop = new DigitalInput(2);
+    DigitalInput m_intakeLimitSwitchBottom = new DigitalInput(3);
 
 
     AHRS m_navx = new AHRS(){
@@ -151,32 +149,24 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
     }
 
     @Override
-    public SpeedController getIntakePullyMotorRight() {
-        return m_intakePullyMotorRight;
+    public SpeedController getIntakePullyMotor() {
+        return m_intakePullyMotor;
     }
 
     @Override
-    public SpeedController getIntakePullyMotorLeft() {
-        return m_intakePullyMotorLeft;
+    public SpeedController getIntakeArmMotor() {
+        return m_intakeArmMotor;
     }
 
     @Override
-    public SpeedController getIntakeArmMotorLeft() {
-        return m_intakeArmMotorLeft;
-    }
-
-    @Override
-    public DigitalInput getIntakeLimitSwitchLeft() {
-        return m_intakeLimitSwitchLeft;
+    public DigitalInput getIntakeLimitSwitchTop() {
+        return m_intakeLimitSwitchTop;
     }  
    
     @Override
-    public DigitalInput getIntakeLimitSwitchRight() {
-        return m_intakeLimitSwitchRight;
+    public DigitalInput getIntakeLimitSwitchBottom() {
+        return m_intakeLimitSwitchBottom;
     }  
 
-    @Override 
-    public SpeedController getIntakeArmMotorRight() {
-        return m_intakeArmMotorRight;
-    }
+  
 }
