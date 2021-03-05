@@ -31,10 +31,8 @@ public class TestRobot implements RobotFrame {
    
     VirtualMotor m_intakeMotor = new VirtualMotor("Intake Motor");
     VirtualMotor m_beltMotor = new VirtualMotor("Belt Motor");
-    VirtualMotor m_intakePullyMotorRight = new VirtualMotor("Intake Pully Motor Right ");
-    VirtualMotor m_intakePullyMotorLeft = new VirtualMotor("Intake Pully Motor Left ");
-    VirtualMotor m_intakeArmMotorRight = new VirtualMotor("Intake Arm Motor Right ");
-    VirtualMotor m_intakeArmMotorLeft = new VirtualMotor("Intake Arm Motor Left ");
+    VirtualMotor m_intakePullyMotor = new VirtualMotor("Intake Pully Motors");
+    VirtualMotor m_intakeArmMotor = new VirtualMotor("Intake Arm Motors");
     VirtualSolenoid m_conveyorBlocker = new VirtualSolenoid(0,1);
     VirtualSolenoid m_intakeExtender = new VirtualSolenoid(2,3);
 
@@ -51,8 +49,8 @@ public class TestRobot implements RobotFrame {
     IEncoderMotor m_leftMotors = new PWMEncoderMotor(new SpeedControllerGroup(new Spark(0), new Spark(1)), m_leftEncoder, 2048);
     IEncoderMotor m_rightMotors = new PWMEncoderMotor(new SpeedControllerGroup(new Spark(2), new Spark(3)), m_rightEncoder, 2048);
     DigitalInput m_beamBreak = new DigitalInput(12);
-    DigitalInput m_intakeLimitSwitchLeft = new DigitalInput(2);
-    DigitalInput m_intakeLimitSwitchRight = new DigitalInput(3);
+    DigitalInput m_intakeLimitSwitchTop = new DigitalInput(2);
+    DigitalInput m_intakeLimitSwitchBottom = new DigitalInput(3);
    
     @Override
     public RobotConstants getConstants() {
@@ -109,32 +107,23 @@ public class TestRobot implements RobotFrame {
     }
 
     @Override
-    public SpeedController getIntakePullyMotorRight() {
-        return m_intakePullyMotorRight;
+    public SpeedController getIntakePullyMotor() {
+        return m_intakePullyMotor;
+    }
+
+    
+    @Override
+    public SpeedController getIntakeArmMotor() {
+        return m_intakeArmMotor;
     }
 
     @Override
-    public SpeedController getIntakePullyMotorLeft() {
-        return m_intakePullyMotorLeft;
-    }
-
-    @Override
-    public SpeedController getIntakeArmMotorLeft() {
-        return m_intakeArmMotorLeft;
-    }
-
-    @Override
-    public DigitalInput getIntakeLimitSwitchLeft() {
-        return m_intakeLimitSwitchLeft;
+    public DigitalInput getIntakeLimitSwitchTop() {
+        return m_intakeLimitSwitchTop;
     }  
    
     @Override
-    public DigitalInput getIntakeLimitSwitchRight() {
-        return m_intakeLimitSwitchRight;
+    public DigitalInput getIntakeLimitSwitchBottom() {
+        return m_intakeLimitSwitchBottom;
     }  
-
-    @Override 
-    public SpeedController getIntakeArmMotorRight() {
-        return m_intakeArmMotorRight;
-    }
 }

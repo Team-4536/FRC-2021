@@ -19,12 +19,11 @@ public interface RobotFrame {
     DoubleSolenoid getConveyorBlocker();
     DoubleSolenoid getIntakeExtender();
     DigitalInput getConveyorBeam();
-    DigitalInput getIntakeLimitSwitchLeft();
-    DigitalInput getIntakeLimitSwitchRight();
-    SpeedController getIntakePullyMotorRight();
-    SpeedController getIntakePullyMotorLeft();
-    SpeedController getIntakeArmMotorLeft();
-    SpeedController getIntakeArmMotorRight();
+    DigitalInput getIntakeLimitSwitchBottom();
+    DigitalInput getIntakeLimitSwitchTop();
+    SpeedController getIntakePullyMotor();
+    SpeedController getIntakeArmMotor();
+  
    
 }
 
