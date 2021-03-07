@@ -37,21 +37,23 @@ public class Honeycomb implements RobotFrame {
     IEncoderMotor m_bottomFlywheel = new BrushedMAX(1, true, 8192, 20);
     //new PIDBrushedMax(1, true, 8192, new PIDConstants(10.3/12,0,0), 20);
 
-    SpeedController m_intakeMotor = new WPI_VictorSPX(1);
-    SpeedController m_beltMotor = new WPI_VictorSPX(4);
-    SpeedController m_intakePullyMotor = new WPI_VictorSPX(5);
-    SpeedController m_intakeArmMotor = new WPI_VictorSPX(7);
+    SpeedController m_rightIntakeArmPullyMotor = new WPI_VictorSPX(5); //TODO: Verify Right Intake Arm Pully Motor Type
+    SpeedController m_rightIntakeArmPositionMotor = new WPI_VictorSPX(7); //TODO: Verify Right Intake Arm Position Motor Type
+    DigitalInput m_rightIntakeArmOutsideLimitSwitch = new DigitalInput(2); //TODO: Get DigitalInputI ID for Right Intake Arm Outside Limit Switch
+    DigitalInput m_rightIntakeArmInsideLimitSwitch = new DigitalInput(3); //TODO: Get DigitalInputI ID for Right Intake Arm Inside Limit Switch
 
-    AHRS m_navx = new AHRS();
-   
+    SpeedController m_leftIntakeArmPullyMotor = new WPI_VictorSPX(5); //TODO: Verify Left Intake Arm Pully Motor Type
+    SpeedController m_leftIntakeArmPositionMotor = new WPI_VictorSPX(7); //TODO: Verify Left Intake Arm Position Motor Type
+    DigitalInput m_leftIntakeArmOutsideLimitSwitch= new DigitalInput(2); //TODO: Get DigitalInputI ID for Left Intake Arm Outside Limit Switch
+    DigitalInput m_leftIntakeArmInsideLimitSwitch = new DigitalInput(3); //TODO: Get DigitalInputI ID for Left Intake Arm Inside Limit Switch
+
+    AHRS m_navx = new AHRS();   
     IEncoderMotor m_rightMotors = new Neo(10.75, 47, 48);
     IEncoderMotor m_leftMotors = new Neo(10.75, 49, 50);
-    DigitalInput m_conveyorBeam = new DigitalInput(1);
-    DigitalInput m_intakeLimitSwitchTop= new DigitalInput(2);
-    DigitalInput m_intakeLimitSwitchBottom = new DigitalInput(3);
 
+    SpeedController m_beltMotor = new WPI_VictorSPX(4);
+    DigitalInput m_conveyorBeam = new DigitalInput(1);
     DoubleSolenoid m_conveyorBlocker = new DoubleSolenoid(1,0);
-    DoubleSolenoid m_intakeExtender = new DoubleSolenoid(2,3);
 
     @Override
     public RobotConstants getConstants() {
@@ -69,28 +71,18 @@ public class Honeycomb implements RobotFrame {
     }
 
     @Override
+    public AHRS getDrivetrainNavX() {
+        return m_navx;
+    }
+
+    @Override
     public DoubleSolenoid getConveyorBlocker() {
         return m_conveyorBlocker;
     }
 
     @Override
-    public DoubleSolenoid getIntakeExtender() {
-        return m_intakeExtender;
-    }
-
-    @Override
-    public SpeedController getIntakeMotor() {
-        return m_intakeMotor;
-    }
-
-    @Override
     public SpeedController getBeltMotor() {
         return m_beltMotor;
-    }
-  
-    @Override
-    public AHRS getDrivetrainNavX() {
-        return m_navx;
     }
   
     @Override
@@ -106,26 +98,46 @@ public class Honeycomb implements RobotFrame {
     @Override
     public DigitalInput getConveyorBeam() {
         return m_conveyorBeam;
-    }  
+    }
 
+    /***    Intake Subsystem Hardware */
     @Override
-    public SpeedController getIntakePullyMotor() {
-        return m_intakePullyMotor;
+    public SpeedController getRightIntakeArmPositionMotor() {
+        return m_rightIntakeArmPositionMotor;
     }
 
     @Override
-    public SpeedController getIntakeArmMotor() {
-        return m_intakeArmMotor;
+    public SpeedController getRightIntakeArmPullyMotor(){
+      return m_rightIntakeArmPullyMotor;
     }
 
     @Override
-    public DigitalInput getIntakeLimitSwitchTop() {
-        return m_intakeLimitSwitchTop;
-    }  
-   
-    @Override
-    public DigitalInput getIntakeLimitSwitchBottom() {
-        return m_intakeLimitSwitchBottom;
-    }  
+    public DigitalInput getRightIntakeArmOutsideLimitSwitch(){
+        return m_rightIntakeArmOutsideLimitSwitch;
+    }
 
+    @Override
+    public DigitalInput getRightIntakeArmInsideLimitSwitch(){
+        return m_rightIntakeArmInsideLimitSwitch;
+    }
+
+    @Override
+    public SpeedController getLeftIntakeArmPositionMotor() {
+        return m_leftIntakeArmPositionMotor;
+    }
+
+    @Override
+    public SpeedController getLeftIntakeArmPullyMotor(){
+      return m_leftIntakeArmPullyMotor;
+    }
+
+    @Override
+    public DigitalInput getLeftIntakeArmOutsideLimitSwitch(){
+        return m_leftIntakeArmOutsideLimitSwitch;
+    }
+
+    @Override
+    public DigitalInput getLeftIntakeArmInsideLimitSwitch(){
+        return m_leftIntakeArmInsideLimitSwitch;
+    }
 }
