@@ -12,18 +12,19 @@ public interface RobotFrame {
     IEncoderMotor getDrivetrainLeftMotor();
     IEncoderMotor getTopShooterFlywheelMotor();
     IEncoderMotor getBottomShooterFlywheelMotor();
-    SpeedController getIntakeMotor();
     SpeedController getBeltMotor();
     AHRS getDrivetrainNavX();
     RobotConstants getConstants();
     DoubleSolenoid getConveyorBlocker();
-    DoubleSolenoid getIntakeExtender();
     DigitalInput getConveyorBeam();
-    DigitalInput getIntakeLimitSwitchBottom();
-    DigitalInput getIntakeLimitSwitchTop();
-    SpeedController getIntakePullyMotor();
-    SpeedController getIntakeArmMotor();
-  
-   
-}
+    
+    DigitalInput getRightIntakeArmOutsideLimitSwitch();
+    DigitalInput getRightIntakeArmInsideLimitSwitch();
+    SpeedController getRightIntakeArmPullyMotor();
+    SpeedController getRightIntakeArmPositionMotor();
 
+    DigitalInput getLeftIntakeArmOutsideLimitSwitch();
+    DigitalInput getLeftIntakeArmInsideLimitSwitch();
+    SpeedController getLeftIntakeArmPullyMotor();
+    SpeedController getLeftIntakeArmPositionMotor();
+}

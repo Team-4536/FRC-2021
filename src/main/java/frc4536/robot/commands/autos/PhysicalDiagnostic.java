@@ -13,10 +13,10 @@ public class PhysicalDiagnostic extends SequentialCommandGroup{
         new RunCommand(m_conveyor::raiseTop, m_conveyor).withTimeout(1),
         new RunCommand(() -> m_conveyor.moveConveyor(Constants.CONVEYOR_SHOOT_SPEED, true), m_conveyor).withTimeout(5),
         new RunCommand(() -> m_conveyor.moveConveyor(Constants.CONVEYOR_INTAKE_SPEED, true), m_conveyor).withTimeout(5),
-        new RunCommand(m_conveyor::lowerTop, m_conveyor).withTimeout(1),
-        new RunCommand(m_intake::extendIntake, m_intake).withTimeout(1),
-        new RunCommand(() -> m_intake.intake(Constants.INTAKE_SPINSPEED), m_intake).withTimeout(5),
-        new RunCommand(m_intake::retractIntake, m_intake).withTimeout(1));
+//        new RunCommand(m_intake::extendIntake, m_intake).withTimeout(1),
+//        new RunCommand(() -> m_intake.intake(Constants.INTAKE_SPINSPEED), m_intake).withTimeout(5),
+//        new RunCommand(m_intake::retractIntake, m_intake).withTimeout(1), //TODO: determine how to test Intake effectively
+        new RunCommand(m_conveyor::lowerTop, m_conveyor).withTimeout(1));
     }
 
     @Override

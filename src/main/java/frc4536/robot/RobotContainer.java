@@ -19,6 +19,7 @@ import frc4536.robot.commands.autos.*;
 import frc4536.robot.commands.*;
 import frc4536.robot.hardware.*;
 import frc4536.robot.subsystems.*;
+import frc4536.robot.subsystems.Intake.IntakeArm;
 
 import java.util.ArrayList;
 
@@ -34,13 +35,31 @@ import static frc4536.lib.Utilities.deadzone;
 public class RobotContainer {
     // The robot's subsystems and commands are defined here.
     public final RobotFrame m_robotHardware = new Honeycomb();
+
     public final DriveTrain m_driveTrain = new DriveTrain(m_robotHardware.getDrivetrainLeftMotor(),
             m_robotHardware.getDrivetrainRightMotor(),
             m_robotHardware.getDrivetrainNavX(),
             m_robotHardware.getConstants());
     public final Shooter m_shooter = new Shooter(m_robotHardware.getTopShooterFlywheelMotor(), m_robotHardware.getBottomShooterFlywheelMotor());
     public final Conveyor m_conveyor = new Conveyor(m_robotHardware.getBeltMotor(), m_robotHardware.getConveyorBlocker(), m_robotHardware.getConveyorBeam());
-    public final Intake m_intake = new Intake(m_robotHardware.getIntakeMotor(), m_robotHardware.getIntakeExtender());
+
+    public final IntakeArm m_rightIntakeArm = 
+        new Intake.IntakeArm(
+            m_robotHardware.getRightIntakeArmPositionMotor(),
+            m_robotHardware.getRightIntakeArmPullyMotor(),
+            m_robotHardware.getRightIntakeArmOutsideLimitSwitch(),
+            m_robotHardware.getRightIntakeArmInsideLimitSwitch(), 
+            0.5, 0.5, false); //TODO : set the constants for the speeds
+
+    public final IntakeArm m_leftIntakeArm = 
+        new Intake.IntakeArm(
+            m_robotHardware.getLeftIntakeArmPositionMotor(),
+            m_robotHardware.getLeftIntakeArmPullyMotor(),
+            m_robotHardware.getLeftIntakeArmOutsideLimitSwitch(),
+            m_robotHardware.getLeftIntakeArmInsideLimitSwitch(), 
+            0.5, 0.5, false); //TODO : set the constants for the speeds
+
+    public final Intake m_intake = new Intake(m_rightIntakeArm, m_leftIntakeArm);
 
     private final XboxController m_driveController = new XboxController(0);
     private final Joystick m_operatorJoystick = new Joystick(1);
@@ -125,13 +144,14 @@ public class RobotContainer {
 
         //Operator Controller
         new JoystickButton(m_operatorJoystick, 12) //Intake extend
-                .whileHeld(new RunCommand(m_intake::extendIntake, m_intake));
+                .whileHeld(new RunCommand(m_intake::rotateArmInwardsAndRunPulleyMotor, m_intake));
         new JoystickButton(m_operatorJoystick, 11) //Conveyor lower
                 .whileHeld(new RunCommand(m_conveyor::lowerTop, m_conveyor));
         new JoystickButton(m_operatorJoystick, 7) //Conveyor manual control
                 .whileHeld(new RunCommand(() -> m_conveyor.moveConveyor(-m_operatorJoystick.getY(), true), m_conveyor));
-        new JoystickButton(m_operatorJoystick, 8)   //Intake manual control
-                .whileHeld(new RunCommand(() -> m_intake.intake(-m_operatorJoystick.getY()), m_intake));
+/* TODO:Need to determine why this is here */
+//        new JoystickButton(m_operatorJoystick, 8)   //Intake manual control
+//                .whileHeld(new RunCommand(() -> m_intake.intake(-m_operatorJoystick.getY()), m_intake));
         new JoystickButton(m_operatorJoystick, 2) //Spinup shooter
                 .whileHeld(new ManualShooter(m_operatorJoystick::getX, m_driveTrain, m_shooter));
         new JoystickButton(m_operatorJoystick, 1) //manual shoot
@@ -145,15 +165,13 @@ public class RobotContainer {
         //Default behaviour for all subsystems lives here.
         CommandBase default_driveTrain = new RunCommand(() -> {
             m_driveTrain.arcadeDrive(m_operatorJoystick.getY(),m_operatorJoystick.getX());
-
         }, m_driveTrain);
         CommandBase default_conveyor = new RunCommand(() -> { //conveyor
             m_conveyor.raiseTop();
             m_conveyor.moveConveyor(0, true);
         }, m_conveyor);
         CommandBase default_intake = new RunCommand(() -> {   //intake
-            m_intake.intake(0);
-            m_intake.retractIntake();
+            m_intake.rotateArmOutwards();
         }, m_intake);
         CommandBase default_shooter = new RunCommand(() -> {  //shooter
             if (m_driveController.getTriggerAxis(Hand.kRight) > 0.5) { //change to 0.5

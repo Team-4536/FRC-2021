@@ -10,12 +10,12 @@ import java.util.function.BooleanSupplier;
 public class IntakeCommands extends CommandBase {
     private final Intake m_intake;
     private final Conveyor m_conveyor;
-    private final BooleanSupplier m_isReversed;
+    private final boolean m_moveIntakeArmsInward;
 
-  public IntakeCommands(Intake intake, Conveyor conveyor, BooleanSupplier reversed) {
+  public IntakeCommands(Intake intake, Conveyor conveyor, BooleanSupplier moveIntakeArmsInward) {
     m_intake = intake;
     m_conveyor = conveyor;
-    m_isReversed = reversed;
+    m_moveIntakeArmsInward = moveIntakeArmsInward.getAsBoolean();
     addRequirements(intake,conveyor);
   }
 
@@ -25,10 +25,15 @@ public class IntakeCommands extends CommandBase {
 
   @Override
   public void execute() {
-      m_intake.intake((m_isReversed.getAsBoolean() ? -1 : 1) * Constants.INTAKE_SPINSPEED);
-      m_intake.extendIntake();
-      m_conveyor.moveConveyor(Constants.CONVEYOR_INTAKE_SPEED, false);
-      m_conveyor.raiseTop();
+    if(m_moveIntakeArmsInward){
+      m_intake.rotateArmInwardsAndRunPulleyMotor();
+    }
+    else
+    {
+      m_intake.rotateArmOutwards();
+    }
+    m_conveyor.moveConveyor(Constants.CONVEYOR_INTAKE_SPEED, false);
+    m_conveyor.raiseTop();
   }
 
   @Override
