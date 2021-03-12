@@ -1,5 +1,6 @@
 package frc4536.robot;
 
+import edu.wpi.first.wpilibj.util.Units;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
@@ -7,6 +8,7 @@ import java.lang.annotation.Target;
 
 public class Poses {
     public static final Pose2d
+
             TRENCH_START = new Pose2d(3.1, -0.75, new Rotation2d(1.0, 0.0)),
             AUTO_TRENCH_SHOOT = new Pose2d(5.0, -0.75, new Rotation2d(4.8, 0.8)),
             TRENCH_SHOOT = new Pose2d(6.5, -0.75, new Rotation2d(6.9, 1.7)),
@@ -22,4 +24,17 @@ public class Poses {
             INNER_AUTO_END = new Pose2d(5.4, -4, new Rotation2d(-6.2, 1.6))
             ;
 
+
+    public static final class GalacticSearchChallenge{
+        public static final Pose2d        
+            BLUE_PATH_A_START = new Pose2d(Units.feetToMeters(2.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(90)),
+            RED_PATH_A_START = new Pose2d(Units.feetToMeters(2.5),Units.feetToMeters(12.5),Rotation2d.fromDegrees(90)),
+            BLUE_PATH_B_START = new Pose2d(Units.feetToMeters(2.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(90)),
+            RED_PATH_B_START = new Pose2d(Units.feetToMeters(2.5),Units.feetToMeters(10),Rotation2d.fromDegrees(90)),
+
+            BLUE_PATH_A_END = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(90)),
+            RED_PATH_A_END = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(12.5),Rotation2d.fromDegrees(90)),
+            BLUE_PATH_B_END = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(5),Rotation2d.fromDegrees(90)),
+            RED_PATH_B_END = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(10),Rotation2d.fromDegrees(90));
+    }
 }

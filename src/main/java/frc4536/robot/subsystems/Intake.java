@@ -4,12 +4,14 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc4536.robot.hardware.RobotConstants;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.*;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.DigitalInput;
  
 public class Intake extends SubsystemBase {
     private IntakeArm m_rightIntakeArm, m_leftIntakeArm;
+
+    public Intake(){}
  
     public Intake(Intake.IntakeArm rightIntakeArm, 
                   Intake.IntakeArm leftIntakeArm){
@@ -20,13 +22,17 @@ public class Intake extends SubsystemBase {
     public void rotateArmInwardsAndRunPulleyMotor(){
       m_rightIntakeArm.rotateArmInwardsAndRunPulleyMotor();
       m_leftIntakeArm.rotateArmInwardsAndRunPulleyMotor();
-      
     }
     
     public void rotateArmOutwards(){
       m_rightIntakeArm.rotateArmOutwards();
       m_leftIntakeArm.rotateArmOutwards();
     }
+
+    public Command claw(){
+      return new RunCommand(() -> this.rotateArmInwardsAndRunPulleyMotor(), this);
+    }
+
 
     public static class IntakeArm{
       private DigitalInput m_outsideLimitSwitch, m_insideLimitSwitch;
@@ -60,7 +66,7 @@ public class Intake extends SubsystemBase {
                     new Intake.IntakeArm(intakeArmMotor, pulleyMotor, outsideLimitSwitch,
                                insideLimitSwitch, 0.5, pulleyMotorSpeed, motorRotatesClockwiseWhenTriggered);
       }
-  
+
       public void rotateArmInwardsAndRunPulleyMotor(){
         rotatePulleyMotor();
         while(insideLimitSwitchIsNotTriggered()){ 
