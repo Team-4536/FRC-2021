@@ -37,13 +37,13 @@ public class Honeycomb implements RobotFrame {
     IEncoderMotor m_bottomFlywheel = new BrushedMAX(1, true, 8192, 20);
     //new PIDBrushedMax(1, true, 8192, new PIDConstants(10.3/12,0,0), 20);
 
-    SpeedController m_rightIntakeArmPullyMotor = new WPI_VictorSPX(5); //TODO: Verify Right Intake Arm Pully Motor Type
-    SpeedController m_rightIntakeArmPositionMotor = new WPI_VictorSPX(7); //TODO: Verify Right Intake Arm Position Motor Type
+    SpeedController m_rightIntakeArmPullyMotor = new WPI_VictorSPX(2); //TODO: Verify Right Intake Arm Pully Motor Type
+    SpeedController m_rightIntakeArmPositionMotor = new WPI_VictorSPX(1); //TODO: Verify Right Intake Arm Position Motor Type
     DigitalInput m_rightIntakeArmOutsideLimitSwitch = new DigitalInput(2); //TODO: Get DigitalInputI ID for Right Intake Arm Outside Limit Switch
     DigitalInput m_rightIntakeArmInsideLimitSwitch = new DigitalInput(3); //TODO: Get DigitalInputI ID for Right Intake Arm Inside Limit Switch
 
     SpeedController m_leftIntakeArmPullyMotor = new WPI_VictorSPX(5); //TODO: Verify Left Intake Arm Pully Motor Type
-    SpeedController m_leftIntakeArmPositionMotor = new WPI_VictorSPX(7); //TODO: Verify Left Intake Arm Position Motor Type
+    SpeedController m_leftIntakeArmPositionMotor = new WPI_VictorSPX(3); //TODO: Verify Left Intake Arm Position Motor Type
     DigitalInput m_leftIntakeArmOutsideLimitSwitch= new DigitalInput(2); //TODO: Get DigitalInputI ID for Left Intake Arm Outside Limit Switch
     DigitalInput m_leftIntakeArmInsideLimitSwitch = new DigitalInput(3); //TODO: Get DigitalInputI ID for Left Intake Arm Inside Limit Switch
 
