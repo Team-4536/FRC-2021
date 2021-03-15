@@ -96,6 +96,47 @@ public class RobotContainer {
             new ArrayList<>(),
             Poses.CENTER_AUTO_END,
             m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomOne = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_START,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_ONE,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomTwo = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_ONE,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_TWO,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomThree = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_TWO,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_THREE,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomFour = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_THREE,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_FOUR,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomFive = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_FOUR,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_FIVE,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomSix = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_FIVE,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_SIX,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomSeven = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_SIX,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_SEVEN,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomEight = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_SEVEN,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_EIGHT,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomNine = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_EIGHT,
+            new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_NINE,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomTen = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_NINE,
+            new ArrayList<>(),
+            Poses.SLALOM_END,
+            m_driveTrain.getConfig().setReversed(false));
+
 
 
     /**
