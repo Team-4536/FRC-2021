@@ -44,8 +44,8 @@ public class Honeycomb implements RobotFrame {
 
     SpeedController m_leftIntakeArmPullyMotor = new WPI_VictorSPX(5); //TODO: Verify Left Intake Arm Pully Motor Type
     SpeedController m_leftIntakeArmPositionMotor = new WPI_VictorSPX(3); //TODO: Verify Left Intake Arm Position Motor Type
-    DigitalInput m_leftIntakeArmOutsideLimitSwitch= new DigitalInput(2); //TODO: Get DigitalInputI ID for Left Intake Arm Outside Limit Switch
-    DigitalInput m_leftIntakeArmInsideLimitSwitch = new DigitalInput(3); //TODO: Get DigitalInputI ID for Left Intake Arm Inside Limit Switch
+    DigitalInput m_leftIntakeArmOutsideLimitSwitch= new DigitalInput(4); //TODO: Get DigitalInputI ID for Left Intake Arm Outside Limit Switch
+    DigitalInput m_leftIntakeArmInsideLimitSwitch = new DigitalInput(5); //TODO: Get DigitalInputI ID for Left Intake Arm Inside Limit Switch
 
     AHRS m_navx = new AHRS();   
     IEncoderMotor m_rightMotors = new Neo(10.75, 47, 48);
