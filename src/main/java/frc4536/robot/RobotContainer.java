@@ -145,6 +145,8 @@ public class RobotContainer {
         //Operator Controller
         new JoystickButton(m_operatorJoystick, 12) //Intake extend
                 .whileHeld(new RunCommand(m_intake::rotateArmInwardsAndRunPulleyMotor, m_intake));
+        new JoystickButton(m_operatorJoystick, 10)
+                .whileHeld(new IntakeCommands(m_intake, m_conveyor, m_driveController::getAButton));   //Intake
         new JoystickButton(m_operatorJoystick, 11) //Conveyor lower
                 .whileHeld(new RunCommand(m_conveyor::lowerTop, m_conveyor));
         new JoystickButton(m_operatorJoystick, 7) //Conveyor manual control
@@ -152,19 +154,30 @@ public class RobotContainer {
 /* TODO:Need to determine why this is here */
 //        new JoystickButton(m_operatorJoystick, 8)   //Intake manual control
 //                .whileHeld(new RunCommand(() -> m_intake.intake(-m_operatorJoystick.getY()), m_intake));
-        new JoystickButton(m_operatorJoystick, 2) //Spinup shooter
-                .whileHeld(new ManualShooter(m_operatorJoystick::getX, m_driveTrain, m_shooter));
-        new JoystickButton(m_operatorJoystick, 1) //manual shoot
-                .whileHeld(new RunCommand(() -> {
-                    m_conveyor.lowerTop();
-                    m_conveyor.moveConveyor(Constants.CONVEYOR_SHOOT_SPEED, true);
-                }, m_conveyor));
+        new JoystickButton(m_operatorJoystick, 1)          //Initiate Shooting
+                .whileHeld(() -> {
+    m_conveyor.moveConveyor(Constants.CONVEYOR_SHOOT_SPEED, true);
+    m_conveyor.lowerTop();
+}, m_conveyor);
+        new JoystickButton(m_operatorJoystick, 2)          //Spin up shooter and automatically fires when shooter reaches a speed.
+                .whileHeld(new ShootCommand(m_shooter, m_conveyor));
+
+         new JoystickButton(m_operatorJoystick, 5)          //reverse move conveyor 
+                .whileHeld(new RunCommand(() -> m_conveyor.moveConveyor(-Constants.CONVEYOR_INTAKE_SPEED, true), m_conveyor));
+
     }
 
     private void configureDefaultCommands() {
         //Default behaviour for all subsystems lives here.
         CommandBase default_driveTrain = new RunCommand(() -> {
-            m_driveTrain.arcadeDrive(m_operatorJoystick.getY(),m_operatorJoystick.getX());
+            boolean trigger = m_operatorJoystick.getTrigger();
+            boolean button = m_operatorJoystick.getRawButton(5);
+            m_driveTrain.arcadeDrive(
+                    (button ? 0.4 : (trigger ? 0.6 : 1.0)) * deadzone(m_operatorJoystick.getY(), Constants.DRIVE_DEADZONE),
+                    (button ? 0.4 : (trigger ? 0.6 : 0.9)) * deadzone(m_operatorJoystick.getX(), Constants.DRIVE_DEADZONE),
+                    true);
+ 
+ 
         }, m_driveTrain);
         CommandBase default_conveyor = new RunCommand(() -> { //conveyor
             m_conveyor.raiseTop();
