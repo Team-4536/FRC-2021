@@ -19,7 +19,7 @@ import frc4536.robot.commands.autos.*;
 import frc4536.robot.commands.*;
 import frc4536.robot.hardware.*;
 import frc4536.robot.subsystems.*;
-import frc4536.robot.subsystems.Intake.IntakeArm;
+//import frc4536.robot.subsystems.Intake.IntakeArm;  // this is not needed and actually confusing
 
 import java.util.ArrayList;
 
@@ -43,23 +43,51 @@ public class RobotContainer {
     public final Shooter m_shooter = new Shooter(m_robotHardware.getTopShooterFlywheelMotor(), m_robotHardware.getBottomShooterFlywheelMotor());
     public final Conveyor m_conveyor = new Conveyor(m_robotHardware.getBeltMotor(), m_robotHardware.getConveyorBlocker(), m_robotHardware.getConveyorBeam());
 
-    public final IntakeArm m_rightIntakeArm = 
-        new Intake.IntakeArm(
-            m_robotHardware.getRightIntakeArmPositionMotor(),
-            m_robotHardware.getRightIntakeArmPullyMotor(),
+/*
+        The first thing I did was remove the code that instantiated the IntakeArms because they are going to be instantiated by Intake.  
+
+        The second thing was to remove the old instantiation code for Intake (where I had previously passed IntakeArms) and replace it
+           with code that passes the hardware into the instantiation code of Intake to allow it to be the area that creates the IntakeArms.
+*/
+
+
+//    public final IntakeArm m_rightIntakeArm = 1
+//        new Intake.IntakeArm(
+//            m_robotHardware.getRightIntakeArmPositionMotor(),
+//            m_robotHardware.getRightIntakeArmPullyMotor(),
+//            m_robotHardware.getRightIntakeArmOutsideLimitSwitch(),
+//            m_robotHardware.getRightIntakeArmInsideLimitSwitch(), 
+//            0.5, 0.5, false); //TODO : set the constants for the speeds
+
+//    public final IntakeArm m_leftIntakeArm = 
+//        new Intake.IntakeArm(
+//            m_robotHardware.getLeftIntakeArmPositionMotor(),
+//            m_robotHardware.getLeftIntakeArmPullyMotor(),
+//            m_robotHardware.getLeftIntakeArmOutsideLimitSwitch(),
+//            m_robotHardware.getLeftIntakeArmInsideLimitSwitch(), 
+//            0.5, 0.5, false); //TODO : set the constants for the speeds
+
+//    public final Intake m_intake = new Intake(m_rightIntakeArm, m_leftIntakeArm);
+
+    boolean rightIntakeArmRotatesClockwiseWhenTriggeredNotDefinedYet = true; //TODO: determine if this is correct, put into Constants?
+    boolean lefttIntakeArmRotatesClockwiseWhenTriggeredNotDefinedYet = false; //TODO: determine if this is correct, put into Constants?
+    double pulleyMotorSpeedNotDefinedYet = 0.5; //TODO: determine correct speed and put in Constants?
+    double positionMotorSpeedNotDefinedYet = 0.5; //TODO: determine correct speed and put in Constants?
+
+    public final Intake m_intake = 
+        new Intake(
+            m_robotHardware.getIntakeArmPulleyMotor(),
+            pulleyMotorSpeedNotDefinedYet,
+            m_robotHardware.getRightIntakeArmPositionMotor(), 
+            m_robotHardware.getRightIntakeArmInsideLimitSwitch(),
             m_robotHardware.getRightIntakeArmOutsideLimitSwitch(),
-            m_robotHardware.getRightIntakeArmInsideLimitSwitch(), 
-            0.5, 0.5, false); //TODO : set the constants for the speeds
-
-    public final IntakeArm m_leftIntakeArm = 
-        new Intake.IntakeArm(
-            m_robotHardware.getLeftIntakeArmPositionMotor(),
-            m_robotHardware.getLeftIntakeArmPullyMotor(),
+            rightIntakeArmRotatesClockwiseWhenTriggeredNotDefinedYet, 
+            m_robotHardware.getLeftIntakeArmPositionMotor(), 
+            m_robotHardware.getLeftIntakeArmInsideLimitSwitch(),
             m_robotHardware.getLeftIntakeArmOutsideLimitSwitch(),
-            m_robotHardware.getLeftIntakeArmInsideLimitSwitch(), 
-            0.5, 0.5, false); //TODO : set the constants for the speeds
-
-    public final Intake m_intake = new Intake(m_rightIntakeArm, m_leftIntakeArm);
+            lefttIntakeArmRotatesClockwiseWhenTriggeredNotDefinedYet,
+            positionMotorSpeedNotDefinedYet
+        );
 
     private final XboxController m_driveController = new XboxController(0);
     private final Joystick m_operatorJoystick = new Joystick(1);

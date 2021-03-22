@@ -51,12 +51,14 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
    
     
     SpeedController m_beltMotor = new Talon(6);
-    SpeedController m_rightIntakeArmPullyMotor = new Talon(5); 
+
+    SpeedController m_intakeArmPulleyMotor;
+//    SpeedController m_rightIntakeArmPullyMotor = new Talon(5); 
     SpeedController m_rightIntakeArmPositionMotor = new Talon(7); 
     DigitalInput m_rightIntakeArmOutsideLimitSwitch = new DigitalInput(2);
     DigitalInput m_rightIntakeArmInsideLimitSwitch = new DigitalInput(3); 
 
-    SpeedController m_leftIntakeArmPullyMotor = new Talon(5); 
+//    SpeedController m_leftIntakeArmPullyMotor = new Talon(5); 
     SpeedController m_leftIntakeArmPositionMotor = new Talon(7); 
     DigitalInput m_leftIntakeArmOutsideLimitSwitch= new DigitalInput(2); 
     DigitalInput m_leftIntakeArmInsideLimitSwitch = new DigitalInput(3); 
@@ -150,10 +152,10 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
         return m_rightIntakeArmPositionMotor;
     }
 
-    @Override
-    public SpeedController getRightIntakeArmPullyMotor(){
-      return m_rightIntakeArmPullyMotor;
-    }
+//    @Override
+//    public SpeedController getRightIntakeArmPullyMotor(){
+//      return m_rightIntakeArmPullyMotor;
+//    }
 
     @Override
     public DigitalInput getRightIntakeArmOutsideLimitSwitch(){
@@ -170,10 +172,10 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
         return m_leftIntakeArmPositionMotor;
     }
 
-    @Override
-    public SpeedController getLeftIntakeArmPullyMotor(){
-      return m_leftIntakeArmPullyMotor;
-    }
+//    @Override
+//    public SpeedController getLeftIntakeArmPullyMotor(){
+//      return m_leftIntakeArmPullyMotor;
+//    }
 
     @Override
     public DigitalInput getLeftIntakeArmOutsideLimitSwitch(){
@@ -186,4 +188,9 @@ public class VirtualRobot extends SubsystemBase implements RobotFrame {
     }
  
   
+// this is the single Pulley Motor code
+    @Override
+    public SpeedController getIntakeArmPulleyMotor(){
+        return m_intakeArmPulleyMotor;
+    }  
 }

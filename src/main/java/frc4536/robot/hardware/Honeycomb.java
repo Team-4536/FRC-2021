@@ -37,12 +37,22 @@ public class Honeycomb implements RobotFrame {
     IEncoderMotor m_bottomFlywheel = new BrushedMAX(1, true, 8192, 20);
     //new PIDBrushedMax(1, true, 8192, new PIDConstants(10.3/12,0,0), 20);
 
-    SpeedController m_rightIntakeArmPullyMotor = new WPI_VictorSPX(2); //TODO: Verify Right Intake Arm Pully Motor Type
+/* 
+    The first thing I did was remove the two Pulley Motor variables and replace them with a single Pulley Motor Variable.
+
+    The second thing I did was to remove the getRightIntakeArmPullyMotor and getLeftIntakeArmPullyMotor and replace them
+       with getIntakeArmPullyMotor which returns the single Pulley Motor.
+*/
+
+    SpeedController m_intakeArmPulleyMotor = new WPI_VictorSPX(2);  // this will be the single pulley motor used by Intake;
+
+//    SpeedController m_rightIntakeArmPullyMotor = new WPI_VictorSPX(2); //TODO: Verify Right Intake Arm Pully Motor Type
+
     SpeedController m_rightIntakeArmPositionMotor = new WPI_VictorSPX(1); //TODO: Verify Right Intake Arm Position Motor Type
     DigitalInput m_rightIntakeArmOutsideLimitSwitch = new DigitalInput(2); //TODO: Get DigitalInputI ID for Right Intake Arm Outside Limit Switch
     DigitalInput m_rightIntakeArmInsideLimitSwitch = new DigitalInput(3); //TODO: Get DigitalInputI ID for Right Intake Arm Inside Limit Switch
 
-    SpeedController m_leftIntakeArmPullyMotor = new WPI_VictorSPX(5); //TODO: Verify Left Intake Arm Pully Motor Type
+//    SpeedController m_leftIntakeArmPullyMotor = new WPI_VictorSPX(5); //TODO: Verify Left Intake Arm Pully Motor Type
     SpeedController m_leftIntakeArmPositionMotor = new WPI_VictorSPX(3); //TODO: Verify Left Intake Arm Position Motor Type
     DigitalInput m_leftIntakeArmOutsideLimitSwitch= new DigitalInput(4); //TODO: Get DigitalInputI ID for Left Intake Arm Outside Limit Switch
     DigitalInput m_leftIntakeArmInsideLimitSwitch = new DigitalInput(5); //TODO: Get DigitalInputI ID for Left Intake Arm Inside Limit Switch
@@ -106,10 +116,11 @@ public class Honeycomb implements RobotFrame {
         return m_rightIntakeArmPositionMotor;
     }
 
-    @Override
-    public SpeedController getRightIntakeArmPullyMotor(){
-      return m_rightIntakeArmPullyMotor;
-    }
+// not needed - only one Pulley Motor
+//    @Override
+//    public SpeedController getRightIntakeArmPullyMotor(){
+//      return m_rightIntakeArmPullyMotor;
+//    }
 
     @Override
     public DigitalInput getRightIntakeArmOutsideLimitSwitch(){
@@ -126,10 +137,11 @@ public class Honeycomb implements RobotFrame {
         return m_leftIntakeArmPositionMotor;
     }
 
-    @Override
-    public SpeedController getLeftIntakeArmPullyMotor(){
-      return m_leftIntakeArmPullyMotor;
-    }
+// not needed - only one Pulley Motor
+//    @Override
+//    public SpeedController getLeftIntakeArmPullyMotor(){
+//      return m_leftIntakeArmPullyMotor;
+//    }
 
     @Override
     public DigitalInput getLeftIntakeArmOutsideLimitSwitch(){
@@ -139,5 +151,11 @@ public class Honeycomb implements RobotFrame {
     @Override
     public DigitalInput getLeftIntakeArmInsideLimitSwitch(){
         return m_leftIntakeArmInsideLimitSwitch;
+    }
+
+// this is the single Pulley Motor code
+    @Override
+    public SpeedController getIntakeArmPulleyMotor(){
+      return m_intakeArmPulleyMotor;
     }
 }

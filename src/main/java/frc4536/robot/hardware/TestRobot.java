@@ -27,14 +27,14 @@ public class TestRobot implements RobotFrame {
                                                            kRamseteB, 
                                                            kRamseteZeta,
                                                            kWheelDiameterInches);
-
-   
-  
+                                                        
     VirtualMotor m_beltMotor = new VirtualMotor("Belt Motor");
     VirtualSolenoid m_conveyorBlocker = new VirtualSolenoid(0,1);
-    VirtualMotor m_rightIntakeArmPullyMotor = new VirtualMotor("Intake arm pully motor right");
+
+    VirtualMotor m_intakeArmPulleyMotor = new VirtualMotor("Intake arm pulley motor");
+//    VirtualMotor m_rightIntakeArmPullyMotor = new VirtualMotor("Intake arm pully motor right");
     VirtualMotor m_rightIntakeArmPositionMotor = new VirtualMotor("Intake arm position motor right");
-    VirtualMotor m_leftIntakeArmPullyMotor = new VirtualMotor("Intake arm pully motor left");
+//    VirtualMotor m_leftIntakeArmPullyMotor = new VirtualMotor("Intake arm pully motor left");
     VirtualMotor m_leftIntakeArmPositionMotor = new VirtualMotor("Intake arm position motor left");
    
     AHRS m_navx = new AHRS(){
@@ -104,10 +104,10 @@ public class TestRobot implements RobotFrame {
         return m_rightIntakeArmPositionMotor;
     }
 
-    @Override
-    public SpeedController getRightIntakeArmPullyMotor(){
-      return m_rightIntakeArmPullyMotor;
-    }
+//    @Override
+//    public SpeedController getRightIntakeArmPullyMotor(){
+//      return m_rightIntakeArmPullyMotor;
+//    }
 
     @Override
     public DigitalInput getRightIntakeArmOutsideLimitSwitch(){
@@ -124,10 +124,10 @@ public class TestRobot implements RobotFrame {
         return m_leftIntakeArmPositionMotor;
     }
 
-    @Override
-    public SpeedController getLeftIntakeArmPullyMotor(){
-      return m_leftIntakeArmPullyMotor;
-    }
+//    @Override
+//    public SpeedController getLeftIntakeArmPullyMotor(){
+//      return m_leftIntakeArmPullyMotor;
+//    }
 
     @Override
     public DigitalInput getLeftIntakeArmOutsideLimitSwitch(){
@@ -139,5 +139,9 @@ public class TestRobot implements RobotFrame {
         return m_leftIntakeArmInsideLimitSwitch;
     }
 
-   
+// new Pulley Motor code
+    @Override
+    public SpeedController getIntakeArmPulleyMotor(){
+        return m_intakeArmPulleyMotor;
+    }
 }
