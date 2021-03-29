@@ -158,6 +158,7 @@ public class RobotContainer {
         m_chooser.setDefaultOption("Center Auto", Autonomous.CENTER_AUTO);
         m_chooser.addOption("Baseline", Autonomous.BASELINE);
         m_chooser.addOption("Opposite Trench", Autonomous.TRENCH_STEAL);
+        m_chooser.addOption("Slalom Auto", Autonomous. SLALOM_AUTO);
         auto.add(m_chooser);
     }
 
@@ -248,8 +249,11 @@ public class RobotContainer {
                 return new CenterAutoCommand(m_shooter, m_conveyor, m_driveTrain, initialPose);
             case BASELINE:
                 return new RunCommand(() -> m_driveTrain.arcadeDrive(-0.3, 0), m_driveTrain).withTimeout(1).andThen(new RunCommand(() -> m_driveTrain.arcadeDrive(0, 0), m_driveTrain));
-            default:
-                return new CenterAutoCommand(m_shooter, m_conveyor, m_driveTrain, initialPose); //safety purposes lol
+            case SLALOM_AUTO:
+                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalomOne, t_slalomTwo, t_slalomThree, t_slalomFour, t_slalomFive, t_slalomSix, t_slalomSeven, t_slalomEight, t_slalomNine, t_slalomTen);
+                default:
+                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalomOne, t_slalomTwo, t_slalomThree, t_slalomFour, t_slalomFive, t_slalomSix, t_slalomSeven, t_slalomEight, t_slalomNine, t_slalomTen);
+                
         }
         //m_chooser.addOption("Test Auto", m_testAuto);
     }
@@ -273,6 +277,7 @@ public class RobotContainer {
         RENDEZVOUS,
         BASELINE,
         CENTER_AUTO,
+        SLALOM_AUTO,
         TRENCH_STEAL;
     }
 }
