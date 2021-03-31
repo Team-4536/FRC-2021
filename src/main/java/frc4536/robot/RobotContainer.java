@@ -206,8 +206,14 @@ public class RobotContainer {
     private void configureDefaultCommands() {
         //Default behaviour for all subsystems lives here.
         CommandBase default_driveTrain = new RunCommand(() -> {
-            m_driveTrain.arcadeDrive(m_operatorJoystick.getY(),m_operatorJoystick.getX());
-        }, m_driveTrain);
+                boolean trigger = m_operatorJoystick.getTrigger();
+                boolean button = m_operatorJoystick.getRawButton(5);
+                m_driveTrain.arcadeDrive(
+                        (button ? 0.4 : (trigger ? 0.6 : 1.0)) * deadzone(m_operatorJoystick.getY(), Constants.DRIVE_DEADZONE),
+                        (button ? 0.4 : (trigger ? 0.6 : 0.9)) * deadzone(m_operatorJoystick.getX(), Constants.DRIVE_DEADZONE),
+                        true);
+     
+            }, m_driveTrain);
         CommandBase default_conveyor = new RunCommand(() -> { //conveyor
             m_conveyor.raiseTop();
             m_conveyor.moveConveyor(0, true);
