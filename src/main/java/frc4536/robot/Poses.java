@@ -30,7 +30,13 @@ public class Poses {
             SLALOM_WAYPOINT_SEVEN = new Pose2d(6.096, 0.762, new Rotation2d(0.785398)),
             SLALOM_WAYPOINT_EIGHT = new Pose2d(3.048, 0.762, new Rotation2d(0.0)),
             SLALOM_WAYPOINT_NINE = new Pose2d(1.524, 2.286, new Rotation2d(-1.5708)),
-            SLALOM_END = new Pose2d(0.762, 2.286, new Rotation2d(0.0))
+            SLALOM_END = new Pose2d(0.762, 2.286, new Rotation2d(0.0)),
+            BOUNCE_START = new Pose2d(0.762, 2.286, new Rotation2d(0.0)),
+            BOUNCE_WAYPOINT_ONE = new Pose2d(1.6764, 2.286, new Rotation2d(0.785398)),
+            BOUNCE_WAYPOINT_TWO = new Pose2d(2.286, 3.81, new Rotation2d(-4.71239)),
+            BOUNCE_WAYPOINT_THREE = new Pose2d(3.81, .762, new Rotation2d(0.785398)),
+            BOUNCE_WAYPOINT_FOUR = new Pose2d(4.572, 3.81, new Rotation2d(-4.71239)),
+            BOUNCE_WAYPOINT_FIVE = new Pose2d(5.0292, .762, new Rotation2d(0.785398))
             ;
 
 }
