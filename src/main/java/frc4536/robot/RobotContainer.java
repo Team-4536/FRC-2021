@@ -114,6 +114,10 @@ public class RobotContainer {
             m_driveTrain.getConfig().setReversed(false));
     Trajectory t_slalomFive = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_FOUR,
             new ArrayList<>(),
+            Poses.SLALOM_WAYPOINT_FOURHALF,
+            m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_slalomFiveHalf = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_FOURHALF,
+            new ArrayList<>(),
             Poses.SLALOM_WAYPOINT_FIVE,
             m_driveTrain.getConfig().setReversed(false));
     Trajectory t_slalomSix = TrajectoryGenerator.generateTrajectory(Poses.SLALOM_WAYPOINT_FIVE,
@@ -136,6 +140,52 @@ public class RobotContainer {
             new ArrayList<>(),
             Poses.SLALOM_END,
             m_driveTrain.getConfig().setReversed(false));
+    Trajectory t_bounceOne = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_START,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_ONE,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceTwo = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_ONE,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_TWO,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceThree = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_TWO,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_THREE,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceFour = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_THREE,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_FOUR,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceFive = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_FOUR,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_FIVE,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceSix = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_FIVE,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_SIX,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceSeven = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_SIX,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_SEVEN,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceEight = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_SEVEN,
+            new ArrayList<>(),
+            Poses.BOUNCE_WAYPOINT_EIGHT,
+            m_driveTrain.getConfig().setReversed(false));
+   Trajectory t_bounceNine = TrajectoryGenerator.generateTrajectory(Poses.BOUNCE_WAYPOINT_EIGHT,
+            new ArrayList<>(),
+            Poses.BOUNCE_END,
+            m_driveTrain.getConfig().setReversed(false));
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -159,6 +209,7 @@ public class RobotContainer {
         m_chooser.addOption("Baseline", Autonomous.BASELINE);
         m_chooser.addOption("Opposite Trench", Autonomous.TRENCH_STEAL);
         m_chooser.addOption("Slalom Auto", Autonomous. SLALOM_AUTO);
+        m_chooser.addOption("Bounce Auto", Autonomous. BOUNCE_AUTO);
         auto.add(m_chooser);
     }
 
@@ -256,9 +307,11 @@ public class RobotContainer {
             case BASELINE:
                 return new RunCommand(() -> m_driveTrain.arcadeDrive(-0.3, 0), m_driveTrain).withTimeout(1).andThen(new RunCommand(() -> m_driveTrain.arcadeDrive(0, 0), m_driveTrain));
             case SLALOM_AUTO:
-                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalomOne, t_slalomTwo, t_slalomThree, t_slalomFour, t_slalomFive, t_slalomSix, t_slalomSeven, t_slalomEight, t_slalomNine, t_slalomTen);
+                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalomOne, t_slalomTwo, t_slalomThree, t_slalomFour, t_slalomFive, t_slalomFiveHalf, t_slalomSix, t_slalomSeven, t_slalomEight, t_slalomNine, t_slalomTen);
+            case BOUNCE_AUTO:
+                return new BounceAutoNav(m_driveTrain, initialPose, t_bounceOne, t_bounceTwo, t_bounceThree, t_bounceFour, t_bounceFive, t_bounceSix, t_bounceSeven, t_bounceEight, t_bounceNine);
                 default:
-                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalomOne, t_slalomTwo, t_slalomThree, t_slalomFour, t_slalomFive, t_slalomSix, t_slalomSeven, t_slalomEight, t_slalomNine, t_slalomTen);
+                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalomOne, t_slalomTwo, t_slalomThree, t_slalomFour, t_slalomFive, t_slalomFiveHalf, t_slalomSix, t_slalomSeven, t_slalomEight, t_slalomNine, t_slalomTen);
                 
         }
         //m_chooser.addOption("Test Auto", m_testAuto);
@@ -284,6 +337,7 @@ public class RobotContainer {
         BASELINE,
         CENTER_AUTO,
         SLALOM_AUTO,
+        BOUNCE_AUTO,
         TRENCH_STEAL;
     }
 }
