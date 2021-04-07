@@ -58,6 +58,8 @@ public class RobotContainer {
             m_robotHardware.getLeftIntakeArmOutsideLimitSwitch(),
             m_robotHardware.getLeftIntakeArmInsideLimitSwitch(), 
             0.5, 0.5, false); //TODO : set the constants for the speeds
+     
+
 
     public final Intake m_intake = new Intake(m_rightIntakeArm, m_leftIntakeArm);
 
@@ -94,9 +96,12 @@ public class RobotContainer {
             m_driveTrain.getConfig().setReversed(true));
     Trajectory t_centerAuto = TrajectoryGenerator.generateTrajectory(Poses.CENTER_AUTO_START,
             new ArrayList<>(),
-            Poses.CENTER_AUTO_END,
-            m_driveTrain.getConfig().setReversed(false));
+            Poses.CENTER_AUTO_END, m_driveTrain.getConfig().setReversed(false));
+       
+    Trajectory t_slalom;
 
+    Trajectory t_bounce;
+    
 
     /**
      * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -104,6 +109,9 @@ public class RobotContainer {
     public RobotContainer() {
         configureButtonBindings();
         configureDefaultCommands();
+        generateSlalomTrajectory();
+        generateBounceTrajectory();
+       
 
         ShuffleboardTab auto = Shuffleboard.getTab("Autonomous");
 
@@ -117,8 +125,44 @@ public class RobotContainer {
         m_chooser.setDefaultOption("Center Auto", Autonomous.CENTER_AUTO);
         m_chooser.addOption("Baseline", Autonomous.BASELINE);
         m_chooser.addOption("Opposite Trench", Autonomous.TRENCH_STEAL);
+        m_chooser.addOption("Slalom Auto", Autonomous.BASELINE);
+        m_chooser.addOption("Bounce Auto", Autonomous.TRENCH_STEAL);
         auto.add(m_chooser);
-    }
+}
+    
+
+       private void generateSlalomTrajectory(){
+               var slalomWayPoints = new ArrayList<Pose2d>();
+               slalomWayPoints.add(Poses.SLALOM_START);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_ONE);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_TWO);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_THREE);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_FOUR);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_FOURHALF);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_FIVE);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_SIX);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_SEVEN);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_EIGHT);
+               slalomWayPoints.add(Poses.SLALOM_WAYPOINT_NINE);
+               slalomWayPoints.add(Poses.SLALOM_END);
+               t_slalom = TrajectoryGenerator.generateTrajectory(slalomWayPoints, m_driveTrain.getConfig().setReversed(false));
+       }
+
+       private void generateBounceTrajectory(){
+               var bounceWaypoints = new ArrayList<Pose2d>();
+               bounceWaypoints.add(Poses.BOUNCE_START);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_ONE);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_TWO);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREE);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FOUR);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FIVE);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_SIX);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_SEVEN);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_EIGHT);
+               bounceWaypoints.add(Poses.BOUNCE_END);
+               t_bounce = TrajectoryGenerator.generateTrajectory(bounceWaypoints, m_driveTrain.getConfig().setReversed(false));
+       }
+
 
     /**
      * Use this method to define your button->command mappings. Buttons can be
@@ -220,9 +264,13 @@ public class RobotContainer {
                 return new CenterAutoCommand(m_shooter, m_conveyor, m_driveTrain, initialPose);
             case BASELINE:
                 return new RunCommand(() -> m_driveTrain.arcadeDrive(-0.3, 0), m_driveTrain).withTimeout(1).andThen(new RunCommand(() -> m_driveTrain.arcadeDrive(0, 0), m_driveTrain));
+            case SLALOM_AUTO:
+                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalom);
+            case BOUNCE_AUTO:
+                return new BounceAutoNav(m_driveTrain, initialPose, t_bounce);
             default:
-                return new CenterAutoCommand(m_shooter, m_conveyor, m_driveTrain, initialPose); //safety purposes lol
-        }
+                return new SlalomAutoNav(m_driveTrain, initialPose, t_slalom);
+            }
         //m_chooser.addOption("Test Auto", m_testAuto);
     }
 
@@ -245,6 +293,8 @@ public class RobotContainer {
         RENDEZVOUS,
         BASELINE,
         CENTER_AUTO,
+        SLALOM_AUTO,
+        BOUNCE_AUTO,
         TRENCH_STEAL;
     }
 }
