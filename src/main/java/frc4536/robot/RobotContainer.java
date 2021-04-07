@@ -158,8 +158,11 @@ public class RobotContainer {
                var bounceWaypoints = new ArrayList<Pose2d>();
                bounceWaypoints.add(Poses.BOUNCE_START);
                bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_ONE);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_ONEHALF);
                bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_TWO);
                bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREE);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREEHALF);
+               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREEEE);
                bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FOUR);
                bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FIVE);
                bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_SIX);
@@ -172,6 +175,8 @@ public class RobotContainer {
        private void generateBarrelTrajectory(){
                 var barrelWaypoints = new ArrayList<Pose2d>();
                 barrelWaypoints.add(Poses.BARREL_START);
+                barrelWaypoints.add(Poses.BOUNCE_WAYPOINT_EIGHT);
+                barrelWaypoints.add(Poses.BOUNCE_WAYPOINT_SEVEN);
                  t_barrel = TrajectoryGenerator.generateTrajectory(barrelWaypoints, m_driveTrain.getConfig().setReversed(false));
        }
 
@@ -217,6 +222,8 @@ public class RobotContainer {
 }, m_conveyor);
         new JoystickButton(m_operatorJoystick, 2)          //Spin up shooter and automatically fires when shooter reaches a speed.
                 .whileHeld(new ShootCommand(m_shooter, m_conveyor));
+       
+
 
          new JoystickButton(m_operatorJoystick, 5)          //reverse move conveyor 
                 .whileHeld(new RunCommand(() -> m_conveyor.moveConveyor(-Constants.CONVEYOR_INTAKE_SPEED, true), m_conveyor));

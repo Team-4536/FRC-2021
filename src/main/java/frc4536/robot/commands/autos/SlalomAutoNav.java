@@ -16,6 +16,7 @@ public class SlalomAutoNav extends SequentialCommandGroup {
     
         addCommands(
             driveTrain.scurveTo(slalomOne)
+            
         );
     }
 
