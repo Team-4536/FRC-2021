@@ -114,7 +114,7 @@ public class RobotContainer {
         configureButtonBindings();
         configureDefaultCommands();
         generateSlalomTrajectory();
-        generateBounceTrajectory();
+        getBounceTrajectory();
         generateBarrelTrajectory();
        
 
@@ -130,7 +130,7 @@ public class RobotContainer {
         m_chooser.setDefaultOption("Center Auto", Autonomous.CENTER_AUTO);
         m_chooser.addOption("Baseline", Autonomous.BASELINE);
         m_chooser.addOption("Opposite Trench", Autonomous.TRENCH_STEAL);
-        m_chooser.addOption("Slalom Auto", Autonomous.BASELINE);
+        m_chooser.addOption("Slalom Auto", Autonomous.SLALOM_AUTO);
         m_chooser.addOption("Bounce Auto", Autonomous.BOUNCE_AUTO);
         m_chooser.addOption("Barrel Auto", Autonomous.BARREL_AUTO);
         auto.add(m_chooser);
@@ -154,29 +154,43 @@ public class RobotContainer {
                t_slalom = TrajectoryGenerator.generateTrajectory(slalomWayPoints, m_driveTrain.getConfig().setReversed(false));
        }
 
-       private void generateBounceTrajectory(){
-               var bounceWaypoints = new ArrayList<Pose2d>();
-               bounceWaypoints.add(Poses.BOUNCE_START);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_ONE);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_ONEHALF);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_TWO);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREE);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREEHALF);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREEEE);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FOUR);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FIVE);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_SIX);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_SEVEN);
-               bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_EIGHT);
-               bounceWaypoints.add(Poses.BOUNCE_END);
-               t_bounce = TrajectoryGenerator.generateTrajectory(bounceWaypoints, m_driveTrain.getConfig().setReversed(false));
-       }
+       private void getBounceTrajectory(){
+       var bounceWaypoints = new ArrayList<Pose2d>();
+       bounceWaypoints.add(Poses.BOUNCE_START);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_ONE);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_ONEHALF);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_TWO);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_BOUNCY);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_THREEHALF);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_OTHER);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FOUR);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_FIVE);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_SIX);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_SEVEN);
+       bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_EIGHT);
+       bounceWaypoints.add(Poses.BOUNCE_END);
+       t_bounce = TrajectoryGenerator.generateTrajectory(bounceWaypoints, m_driveTrain.getConfig().setReversed(false));
+
+    }
+
+
+       
 
        private void generateBarrelTrajectory(){
                 var barrelWaypoints = new ArrayList<Pose2d>();
                 barrelWaypoints.add(Poses.BARREL_START);
-                barrelWaypoints.add(Poses.BOUNCE_WAYPOINT_EIGHT);
-                barrelWaypoints.add(Poses.BOUNCE_WAYPOINT_SEVEN);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_ONE);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_TWO);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_THREE);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_FOUR);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_FIVE);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_SIX);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_SEVEN);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_EIGHT);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_NINE);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_TEN);
+                barrelWaypoints.add(Poses.BARREL_WAYPOINT_ELEVEN);
+                barrelWaypoints.add(Poses.BARREL_END);
                  t_barrel = TrajectoryGenerator.generateTrajectory(barrelWaypoints, m_driveTrain.getConfig().setReversed(false));
        }
 
