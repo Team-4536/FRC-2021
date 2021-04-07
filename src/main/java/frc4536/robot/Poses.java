@@ -43,7 +43,8 @@ public class Poses {
             BOUNCE_WAYPOINT_SIX = new Pose2d(Units.feetToMeters(21.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(45)),
             BOUNCE_WAYPOINT_SEVEN = new Pose2d(Units.feetToMeters(22.5),Units.feetToMeters(12.5),Rotation2d.fromDegrees(-270)),
             BOUNCE_WAYPOINT_EIGHT = new Pose2d(Units.feetToMeters(24.0),Units.feetToMeters(7.5),Rotation2d.fromDegrees(45)),
-            BOUNCE_END = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(0))
+            BOUNCE_END = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(0)),
+            BARREL_START = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(0))
             ;
 
 }

@@ -101,6 +101,10 @@ public class RobotContainer {
     Trajectory t_slalom;
 
     Trajectory t_bounce;
+
+    Trajectory t_barrel;
+
+
     
 
     /**
@@ -111,6 +115,7 @@ public class RobotContainer {
         configureDefaultCommands();
         generateSlalomTrajectory();
         generateBounceTrajectory();
+        generateBarrelTrajectory();
        
 
         ShuffleboardTab auto = Shuffleboard.getTab("Autonomous");
@@ -126,7 +131,8 @@ public class RobotContainer {
         m_chooser.addOption("Baseline", Autonomous.BASELINE);
         m_chooser.addOption("Opposite Trench", Autonomous.TRENCH_STEAL);
         m_chooser.addOption("Slalom Auto", Autonomous.BASELINE);
-        m_chooser.addOption("Bounce Auto", Autonomous.TRENCH_STEAL);
+        m_chooser.addOption("Bounce Auto", Autonomous.BOUNCE_AUTO);
+        m_chooser.addOption("Barrel Auto", Autonomous.BARREL_AUTO);
         auto.add(m_chooser);
 }
     
@@ -161,6 +167,12 @@ public class RobotContainer {
                bounceWaypoints.add(Poses.BOUNCE_WAYPOINT_EIGHT);
                bounceWaypoints.add(Poses.BOUNCE_END);
                t_bounce = TrajectoryGenerator.generateTrajectory(bounceWaypoints, m_driveTrain.getConfig().setReversed(false));
+       }
+
+       private void generateBarrelTrajectory(){
+                var barrelWaypoints = new ArrayList<Pose2d>();
+                barrelWaypoints.add(Poses.BARREL_START);
+                 t_barrel = TrajectoryGenerator.generateTrajectory(barrelWaypoints, m_driveTrain.getConfig().setReversed(false));
        }
 
 
@@ -268,6 +280,8 @@ public class RobotContainer {
                 return new SlalomAutoNav(m_driveTrain, initialPose, t_slalom);
             case BOUNCE_AUTO:
                 return new BounceAutoNav(m_driveTrain, initialPose, t_bounce);
+            case BARREL_AUTO:
+                return new BarrelAutoNav(m_driveTrain, initialPose, t_barrel);
             default:
                 return new SlalomAutoNav(m_driveTrain, initialPose, t_slalom);
             }
@@ -295,6 +309,7 @@ public class RobotContainer {
         CENTER_AUTO,
         SLALOM_AUTO,
         BOUNCE_AUTO,
+        BARREL_AUTO,
         TRENCH_STEAL;
     }
 }
