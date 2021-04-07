@@ -12,21 +12,11 @@ import frc4536.robot.subsystems.Intake;
 
 import java.util.ArrayList;
 public class BounceAutoNav extends SequentialCommandGroup {
-    public BounceAutoNav(DriveTrain driveTrain, Pose2d initialPose, Trajectory bounceOne, Trajectory bounceTwo, Trajectory bounceThree, Trajectory bounceFour, Trajectory bounceFive, Trajectory bounceSix, Trajectory bounceSeven, Trajectory bounceEight, Trajectory bounceNine) {
-    
+    public BounceAutoNav(DriveTrain driveTrain, Pose2d initialPose, Trajectory bounceOne){
      
     
         addCommands(
-            driveTrain.scurveTo(bounceOne),
-            driveTrain.scurveTo(bounceTwo),
-            driveTrain.scurveTo(bounceThree),
-            driveTrain.scurveTo(bounceFour),
-            driveTrain.scurveTo(bounceFive),
-            driveTrain.scurveTo(bounceSix),
-            driveTrain.scurveTo(bounceSeven),
-            driveTrain.scurveTo(bounceEight),
-            driveTrain.scurveTo(bounceNine)
-
+            driveTrain.scurveTo(bounceOne)
         );
     }
 

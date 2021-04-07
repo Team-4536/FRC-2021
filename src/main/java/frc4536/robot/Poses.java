@@ -1,7 +1,9 @@
 package frc4536.robot;
 
+import edu.wpi.first.wpilibj.Ultrasonic.Unit;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
+import edu.wpi.first.wpilibj.util.Units;
 
 import java.lang.annotation.Target;
 
@@ -20,29 +22,28 @@ public class Poses {
             CENTER_AUTO_END = new Pose2d(6, -2.45, new Rotation2d(1.0, 0.0)),
             INNER_AUTO_WAYPOINT = new Pose2d(4.08, -4.0, new Rotation2d(-1.0, 0.0)),
             INNER_AUTO_END = new Pose2d(5.4, -4, new Rotation2d(-6.2, 1.6)),
-            SLALOM_START = new Pose2d(0.762, 0.762, new Rotation2d(0.0)),
-            SLALOM_WAYPOINT_ONE = new Pose2d(2.286, 0.762, new Rotation2d(-0.785398)),
-            SLALOM_WAYPOINT_TWO = new Pose2d(3.048, 2.286, new Rotation2d(0.0)),
-            SLALOM_WAYPOINT_THREE = new Pose2d(6.35, 2.286, new Rotation2d(0.785398)),
-            SLALOM_WAYPOINT_FOUR = new Pose2d(7.1628, 0.762, new Rotation2d(0.0)),
-            SLALOM_WAYPOINT_FOURHALF = new Pose2d(8.382, 0.762, new Rotation2d(1.5708)),
-            SLALOM_WAYPOINT_FIVE = new Pose2d(8.382, 2.286, new Rotation2d(1.5708)),
-            SLALOM_WAYPOINT_SIX = new Pose2d(6.858, 2.286, new Rotation2d(0.785398)),
-            SLALOM_WAYPOINT_SEVEN = new Pose2d(6.096, 0.6096, new Rotation2d(0.785398)),
-            SLALOM_WAYPOINT_EIGHT = new Pose2d(3.048, 0.6096, new Rotation2d(0.0)),
-            SLALOM_WAYPOINT_NINE = new Pose2d(1.524, 2.286, new Rotation2d(-1.5708)),
-            SLALOM_END = new Pose2d(0.762, 2.286, new Rotation2d(0.0)),
-            BOUNCE_START = new Pose2d(0.762, 2.286, new Rotation2d(0.0)),
-            BOUNCE_WAYPOINT_ONE = new Pose2d(1.6764, 2.286, new Rotation2d(0.0)),
-            BOUNCE_WAYPOINT_TWO = new Pose2d(2.286, 3.81, new Rotation2d(0.0)),
-            BOUNCE_WAYPOINT_THREE = new Pose2d(3.81, .762, new Rotation2d(0.785398)),
-            BOUNCE_WAYPOINT_FOUR = new Pose2d(4.572, 3.81, new Rotation2d(-4.71239)),
-            BOUNCE_WAYPOINT_FIVE = new Pose2d(5.0292, .762, new Rotation2d(0.785398)),
-            BOUNCE_WAYPOINT_SIX = new Pose2d(6.5532, .762, new Rotation2d(0.785398)),
-            BOUNCE_WAYPOINT_SEVEN = new Pose2d(6.5532, 3.81, new Rotation2d(-4.71239)),
-            BOUNCE_WAYPOINT_EIGHT = new Pose2d(7.3152, 2.286, new Rotation2d(0.785398)),
-            BOUNCE_END = new Pose2d(8.382, 2.286, new Rotation2d(0.0))
-
+            SLALOM_START = new Pose2d(Units.feetToMeters(2.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(0)),
+            SLALOM_WAYPOINT_ONE = new Pose2d(Units.feetToMeters(7.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(-45)),
+            SLALOM_WAYPOINT_TWO = new Pose2d(Units.feetToMeters(10.0),Units.feetToMeters(7.5),Rotation2d.fromDegrees(0)),
+            SLALOM_WAYPOINT_THREE = new Pose2d(Units.feetToMeters(20.0),Units.feetToMeters(7.5),Rotation2d.fromDegrees(45)),
+            SLALOM_WAYPOINT_FOUR = new Pose2d(Units.feetToMeters(23.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(0)),
+            SLALOM_WAYPOINT_FOURHALF = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(90)),
+            SLALOM_WAYPOINT_FIVE = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(90)),
+            SLALOM_WAYPOINT_SIX = new Pose2d(Units.feetToMeters(22.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(45)),
+            SLALOM_WAYPOINT_SEVEN = new Pose2d(Units.feetToMeters(20.0),Units.feetToMeters(2.5),Rotation2d.fromDegrees(45)),
+            SLALOM_WAYPOINT_EIGHT = new Pose2d(Units.feetToMeters(10.0),Units.feetToMeters(2.5),Rotation2d.fromDegrees(0)),
+            SLALOM_WAYPOINT_NINE = new Pose2d(Units.feetToMeters(5.0),Units.feetToMeters(7.5),Rotation2d.fromDegrees(-90)),
+            SLALOM_END = new Pose2d(Units.feetToMeters(2.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(0)),
+            BOUNCE_START = new Pose2d(Units.feetToMeters(2.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(0)),
+            BOUNCE_WAYPOINT_ONE = new Pose2d(Units.feetToMeters(5.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(45)),
+            BOUNCE_WAYPOINT_TWO = new Pose2d(Units.feetToMeters(7.5),Units.feetToMeters(12.5),Rotation2d.fromDegrees(-270)),
+            BOUNCE_WAYPOINT_THREE = new Pose2d(Units.feetToMeters(12.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(45)),
+            BOUNCE_WAYPOINT_FOUR = new Pose2d(Units.feetToMeters(15.0),Units.feetToMeters(12.5),Rotation2d.fromDegrees(-270)),
+            BOUNCE_WAYPOINT_FIVE = new Pose2d(Units.feetToMeters(16.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(45)),
+            BOUNCE_WAYPOINT_SIX = new Pose2d(Units.feetToMeters(21.5),Units.feetToMeters(2.5),Rotation2d.fromDegrees(45)),
+            BOUNCE_WAYPOINT_SEVEN = new Pose2d(Units.feetToMeters(22.5),Units.feetToMeters(12.5),Rotation2d.fromDegrees(-270)),
+            BOUNCE_WAYPOINT_EIGHT = new Pose2d(Units.feetToMeters(24.0),Units.feetToMeters(7.5),Rotation2d.fromDegrees(45)),
+            BOUNCE_END = new Pose2d(Units.feetToMeters(27.5),Units.feetToMeters(7.5),Rotation2d.fromDegrees(0))
             ;
 
 }

@@ -12,20 +12,10 @@ import frc4536.robot.subsystems.Intake;
 
 import java.util.ArrayList;
 public class SlalomAutoNav extends SequentialCommandGroup {
-    public SlalomAutoNav(DriveTrain driveTrain, Pose2d initialPose, Trajectory slalomOne, Trajectory slalomTwo, Trajectory slalomThree, Trajectory slalomFour, Trajectory slalomFive, Trajectory slalomFiveHalf, Trajectory slalomSix, Trajectory slalomSeven, Trajectory slalomEight, Trajectory slalomNine, Trajectory slalomTen) {
+    public SlalomAutoNav(DriveTrain driveTrain, Pose2d initialPose, Trajectory slalomOne) {
     
         addCommands(
-            driveTrain.scurveTo(slalomOne),
-            driveTrain.scurveTo(slalomTwo),
-            driveTrain.scurveTo(slalomThree),
-            driveTrain.scurveTo(slalomFour),
-            driveTrain.scurveTo(slalomFive),
-            driveTrain.scurveTo(slalomFiveHalf),
-            driveTrain.scurveTo(slalomSix),
-            driveTrain.scurveTo(slalomSeven),
-            driveTrain.scurveTo(slalomEight),
-            driveTrain.scurveTo(slalomNine),
-            driveTrain.scurveTo(slalomTen)
+            driveTrain.scurveTo(slalomOne)
         );
     }
 
